@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-
+import { useEffect, useState } from 'react'
 import ReviewCard from '../components/ReviewCard'
+// import { useGlobalContext } from '../context/GlobalContext';
 
 
 export default function MoviePage() {
@@ -22,6 +22,8 @@ export default function MoviePage() {
                 console.log(error)
             })
     }
+
+    // const { movie, fetchMovie } = useGlobalContext()
 
     useEffect(fetchMovie, [id])
 

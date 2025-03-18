@@ -1,18 +1,21 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useEffect } from 'react'
+// import axios from 'axios'
 import MovieCard from '../components/MovieCard';
+import { useGlobalContext } from '../context/GlobalContext';
 
 
 export default function HomePage() {
-    const [movies, setMovies] = useState([]);
+    // const [movies, setMovies] = useState([]);
 
-    const url = import.meta.env.VITE_ENDPOINT_URL;
+    // const url = import.meta.env.VITE_ENDPOINT_URL;
 
-    const fetchMovie = () => {
-        axios.get(url)
-            .then(res => setMovies(res.data))
-            .catch((error) => { console.log(error) })
-    }
+    // const fetchMovie = () => {
+    //     axios.get(url)
+    //         .then(res => setMovies(res.data))
+    //         .catch((error) => { console.log(error) })
+    // }
+
+    const { movies, fetchMovies } = useGlobalContext();
 
 
     const renderMovies = () => {
@@ -25,7 +28,7 @@ export default function HomePage() {
         })
     }
 
-    useEffect(fetchMovie, []);
+    useEffect(fetchMovies, []);
 
 
     return (
