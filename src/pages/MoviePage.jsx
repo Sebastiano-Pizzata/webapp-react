@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ReviewCard from '../components/ReviewCard'
+import ReviewForm from '../components/ReviewForm'
 // import { useGlobalContext } from '../context/GlobalContext';
 
 
@@ -41,6 +42,9 @@ export default function MoviePage() {
             <section>
                 <h4>Recensioni della Community</h4>
                 {renderReview()}
+            </section>
+            <section>
+                {movie?.id && <ReviewForm movie_id={movie.id} reloadReviews={fetchMovie} />}
             </section>
         </>
     )
