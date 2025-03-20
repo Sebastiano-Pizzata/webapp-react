@@ -9,6 +9,7 @@ const GlobalContext = createContext();
 const GlobalProvider = ({ children }) => {
     const [movies, setMovies] = useState([]);
     const [movie, setMovie] = useState({});
+    const [isLoading, setIsLoading] = useState(false)
 
     const { id } = useParams();
 
@@ -17,10 +18,12 @@ const GlobalProvider = ({ children }) => {
 
 
     function fetchMovies() {
+        setIsLoading(true)
 
         axios.get(url)
             .then(res => setMovies(res.data))
             .catch((error) => { console.log(error) })
+            .then(() => setIsLoading(false))
     }
 
     function fetchMovie() {
@@ -35,13 +38,18 @@ const GlobalProvider = ({ children }) => {
     }
 
 
+    // Loader logic
+
+
+
 
     const value = {
         movies,
         movie,
         fetchMovie,
         fetchMovies,
-
+        isLoading,
+        setIsLoading
     }
 
     return (
